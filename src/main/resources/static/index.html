@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=0ec4ea5b21c6b66b3fbe711e372a749e&plugin=AMap.DistrictSearch"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        table, th , td  {
+            width: 600px;
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: center
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+
+<div id="tip" ng-controller="myCtrl">
+
+    <select ng-model="province" style="width:120px">
+        <option value="">----请 选 择----</option>
+        <option ng-repeat="x in provinceList">{{x.name}}</option>
+        <option ng-selected="{{provinceName == x.name}}">{{provinceName}}</option>
+    </select>
+
+    省：
+    <select ng-model="province" ng-select="" ng-options="x.name for x in provinceList" style="width:120px">
+        <option value="">----请 选 择----</option>
+    </select>
+    市：
+    <select ng-model='city' ng-options="x.name for x in cityList" style="width:120px">
+        <option value="">----请 选 择----</option>
+    </select>
+    区：
+    <select ng-model='district' ng-options="x.name for x in districtList" style="width:120px">
+        <option value="">----请 选 择----</option>
+    </select>
+
+    <!--街道：
+    <select ng-model='street' ng-options="x.name for x in streetList" style="width:100px">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+    </select>-->
+
+    <hr/>
+    {{province.adcode}}  {{city.adcode}}  {{district.adcode}}<br/>
+    {{province.name}}  {{city.name}}  {{district.name}}<br/>
+    <button ng-show="exit" ng-click="saveDemo()">saveDemo</button>
+
+    <hr/>
+    <button ng-click="demoList()">demoList</button>
+    <hr/>
+    <label>下面是数据库的数据</label>
+    <div>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>province</th>
+                <th>city</th>
+                <th>district</th>
+                <th>edit</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in demos">
+                    <td>{{x.id}}</td>
+                    <td>{{x.provinceName}}</td>
+                    <td>{{x.cityName}}</td>
+                    <td>{{x.districtName}}</td>
+                    <td>
+                        <button ng-click="editDemo(x.id)">修改</button>/<button ng-click="deleteDemo(x.id)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

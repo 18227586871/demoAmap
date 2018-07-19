@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DemoMapper">
+
+    <!--void save(Demo demo);-->
+    <insert id="save" parameterType="com.example.demo.entity.Demo">
+        INSERT INTO `demo`
+            (`province_code`,
+            `province_name`,
+            `city_code`,
+            `city_name`,
+            `district_code`,
+            `district_name`)
+        VALUES(
+            #{provinceCode},#{provinceName},#{cityCode},#{cityName},#{districtCode},#{districtName}
+        )
+    </insert>
+    
+</mapper>
